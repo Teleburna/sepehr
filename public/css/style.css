@@ -13,6 +13,9 @@ body{
   -ms-filter: blur(3px);
   filter: blur(3px);
 }
+button, input, a {
+  -webkit-app-region: no-drag;
+}
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -22,6 +25,7 @@ body{
     user-select: none;
 }
 #navbar{
+  -webkit-app-region: drag;
   position: fixed;
   right: 0px;
   top: 0px;

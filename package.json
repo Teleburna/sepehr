@@ -1,6 +1,10 @@
 {
   "name": "sepehr-demo",
   "main": "index.html",
+  "window": {
+    "frame": false,
+    "toolbar": false
+  },
   "dependencies": {
     "nedb": "^0.10.11"
   }

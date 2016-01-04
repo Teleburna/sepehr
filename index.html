@@ -17,8 +17,12 @@
   <script src="public/js/controllers/lang.js"></script>
   <script src="public/js/function.js"></script>
 </head>
-<body ng-app="sepehr" class="noselect">
+<body ng-app="sepehr" class="noselect" >
   <div id="navbar" ng-controller="MenuController">
+
+    <button onclick="require('nw.gui').Window.get().close(true)">close</button>
+    <button onclick="require('nw.gui').Window.get().showDevTools()">dev</button>
+    <button onclick="require('nw.gui').Window.get().toggleKioskMode()">Kiosk</button>
     <div id="logo"></div>
     <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
     <a href="#inbox" class="item" style="background-image: url(./public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
