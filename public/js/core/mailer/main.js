@@ -3,6 +3,7 @@
  */
 var db = require('../db/db');
 var events = require('events');
+var fs = require('fs');
 var eventEmitter = new events.EventEmitter();
 
 var MailListener = require("mail-listener2");
