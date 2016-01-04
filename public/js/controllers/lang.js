@@ -11,8 +11,12 @@ sepehr.config(['$translateProvider', function ($translateProvider) {
         'save': 'save',
         'email': 'email',
         'tags': 'tags',
+        'password': 'password',
+        'handlerName': 'processor name',
+        'scriptPath': 'scrpit path',
         'cancel': 'cancel',
         'default': 'default',
+        'loading': 'loading',
 
     });
 
@@ -21,15 +25,19 @@ sepehr.config(['$translateProvider', function ($translateProvider) {
         'outbox': 'صندوق ارسال',
         'sending': 'درحال ارسال',
         'setting': 'تنظیمات',
-        'reload': 'دارگذاری مججد',
+        'reload': 'بارگذاری مججد',
         'select all': 'انتخاب همه',
         'delete': 'حذف',
         'search': 'جستجو',
         'save': 'ذخیره',
         'email': 'ایمیل',
+        'password': 'گذرواژه',
+        'handlerName': 'نام پردازنده',
+        'scriptPath': 'آدرس ',
         'tags': 'کلمات کلیدی',
         'cancel': 'انصراف',
         'default': 'حالت اولیه',
+        'loading': 'در حال آماده سازی',
 
     });
 

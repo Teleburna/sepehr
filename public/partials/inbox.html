@@ -1,5 +1,6 @@
 
-      <table class="mail-list">
+      <table class="mail-list" >
+          <!--<tr class="mail-item" ng-show="!ready" > {{ 'loading' | translate }} </tr>-->
         <tr class="mail-item" ng-repeat="mail in mails">
           <td class="mail-tools"><span class="checkbox"></span><a href={{'#inbox/'+mail._id}} class="reply"></a></td>
           <td class="mail-sender"><span email="sample@sample.com">{{mail.from[0].name}}</span></td>

@@ -40,7 +40,7 @@ mailListener.on("server:disconnected", function(){
 mailListener.on("error", function(err){
     console.log(err);
 
-    eventEmitter.emit("error");
+    //eventEmitter.emit("error");
 });
 
 mailListener.on("mail", function(mail){

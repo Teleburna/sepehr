@@ -12,7 +12,9 @@ global.NEDB = dataBase;
 global.localStorage = localStorage;
 
 var gui = require('nw.gui');
-var main = gui.Window.get();
+var Window = gui.Window.get();
+Window.resizeTo(900, 600);
+Window.moveTo(100,10);
 if(localStorage.first == null){
     console.log("Yes,its First Time");
     fs.mkdirSync(global.ATTACHMENT_DIR,true);
