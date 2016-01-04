@@ -30,6 +30,7 @@
 
   <div id="container">
     <div id="header">
+      <span id="checkout-btn" onclick="showProcessList()"></span>
       <span id="menu-btn"></span>
       <h2>طراحی الگوریتم</h2>
       <p>تمرین سری سوم</p>
@@ -42,7 +43,43 @@
     </ul>
 
     <div id="content" ng-view="">
-      
+
     </div>
   </div>
+  <div id="process-list">
+    <div class="process" onclick="hideProcessList()">
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+      <div class="inf">
+        <span class="accepted">12</span>
+        <span class="new">3</span>
+      </div>
+    </div>
+    <div class="process" onclick="hideProcessList()">
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+      <div class="inf">
+        <span class="accepted">12</span>
+        <span class="new">3</span>
+      </div>
+    </div>
+    <div class="process" onclick="hideProcessList()">
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+      <div class="inf">
+        <span class="accepted">12</span>
+        <span class="new">3</span>
+      </div>
+    </div>
+    <div class="process" onclick="hideProcessList()">
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+      <div class="inf">
+        <span class="accepted">12</span>
+        <span class="new">3</span>
+      </div>
+    </div>
+    <div id="addNewProcess"></div>
+  </div>
+  <div id="wrapper" onclick="hideProcessList()"></div>
 </body>
