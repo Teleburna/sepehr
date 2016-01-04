@@ -238,7 +238,6 @@ button, input, a {
   z-index: 1;
 }
 .mail-list{
-  direction: ltr;
   margin: 0px auto;
   background-color: white;
   border-collapse: collapse;
@@ -246,7 +245,7 @@ button, input, a {
 }
 .mail-item{
   border-bottom: 1px solid rgba(0,0,0,0.02);
-  border-left: 2px solid #00bdf1;
+  border-right: 2px solid #00bdf1;
   cursor: default;
   transition: 0.3s;
 }
