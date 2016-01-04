@@ -302,14 +302,14 @@ body{
   font-size: 18px;
 }
 
-input[type="email"], input[type="text"]{
+input[type="email"], input[type="text"], input[type="password"]{
   border: 1px solid rgba(0,0,0,0.1);
   padding: 3px 5px;
   border-radius: 5px;
   outline: none;
   font-size: 16px;
 }
-input[type="button"], input[type="submit"]{
+input[type="button"], input[type="submit"], input[type="password"]{
   width: 100%;
   font-size: 18px;
   font-family: inherit;
