@@ -1,0 +1,16 @@
+
+<div class="messages" >
+    <h1>Inbox <span class="icon icon-arrow-down"></span></h1>
+    <form action="">
+        <input type="search" class="search" placeholder="Search Inbox" />
+    </form>
+    <ul class="message-list">
+        <li ng-repeat="mail in mails">
+            <input type="checkbox" />
+            <div class="preview">
+                <h3>{{mail.from[0].name}}<small>{{mail.date}}</small></h3>
+                <a href={{'#inbox/'+mail._id}} ><strong>{{mail.subject}}</strong>...</a>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+<section class="message">
+    <h2><span class="icon icon-star-large"></span>{{mail.subject}}<span class="icon icon-reply-large"></span><span class="icon icon-delete-large"></span></h2>
+    <div class="meta-data">
+        <p>
+            <img src="http://placehold.it/40x40" class="avatar" alt="" />
+            {{mail.from[0].name}} to <span class="user">me</span>
+            <span class="date">{{mail.date}}</span>
+        </p>
+    </div>
+    <div class="body" ng-bind-html="mail.text">
+    </div>
+
+</section>

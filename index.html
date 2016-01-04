@@ -1,0 +1,48 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="public/css/font.css" />
+  <link rel="stylesheet" type="text/css" href="public/css/style.css" />
+
+  <script src="public/js/core/initial.js"></script>
+
+  <script src="public/js/libs/jQuery.js"></script>
+  <script src="public/js/libs/jQueryUi.js"></script>
+  <script src="public/js/libs/angular/angular.js"></script>
+  <script src="public/js/libs/angular/angular-route.min.js"></script>
+  <script src="public/js/libs/angular/angular-translate.min.js"></script>
+  <script src="public/js/core/handler/handler.js"></script>
+  <script src="public/js/core/handler/addHandler.js"></script>
+  <script src="public/js/controllers/sepehrConfig.js"></script>
+  <script src="public/js/controllers/lang.js"></script>
+  <script src="public/js/function.js"></script>
+</head>
+<body ng-app="sepehr" class="noselect">
+  <div id="navbar" ng-controller="MenuController">
+    <div id="logo"></div>
+    <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
+    <a href="#inbox" class="item" style="background-image: url(./public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
+    <a href="#outbox" class="item" style="background-image: url(./public/images/icons/outbox.svg)">{{ 'outbox' | translate }}</a>
+    <a href="#sending" class="item select" style="background-image: url(./public/images/icons/sending.svg)">{{ 'sending' | translate }}</a>
+    <a href="#setting" class="item" style="background-image: url(./public/images/icons/setting.svg)">{{ 'setting' | translate }}</a>
+  </div>
+
+
+  <div id="container">
+    <div id="header">
+      <span id="menu-btn"></span>
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+    </div>
+
+    <ul id="toolbar">
+      <li><a href="#" style="background-image: url(./public/images/icons/mark.png)"></a></li>
+      <li><a href="#" style="background-image: url(./public/images/icons/trash.png)"></a></li>
+      <li><a href="#" style="background-image: url(./public/images/icons/reload.png)"></a></li>
+    </ul>
+
+    <div id="content" ng-view="">
+      
+    </div>
+  </div>
+</body>

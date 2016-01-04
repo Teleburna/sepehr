@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="../public/css/font.css" />
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+  <script src="scripts/jquery-1.11.3.min.js"></script>
+  <script src="scripts/angular.js"></script>
+  <script src="scripts/angular-translate.min.js"></script>
+  <script src="scripts/lang.js"></script>
+  <script src="scripts/function.js"></script>
+</head>
+<body ng-app="sepehr" class="noselect">
+  <div id="navbar">
+    <div id="logo"></div>
+    <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
+    <a href="inbox.html" class="item" style="background-image: url(../public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
+    <a href="outbox.html" class="item" style="background-image: url(../public/images/icons/outbox.svg)">{{ 'outbox' | translate }}</a>
+    <a href="sending.html" class="item" style="background-image: url(../public/images/icons/sending.svg)">{{ 'sending' | translate }}</a>
+    <a href="#" class="item select" style="background-image: url(../public/images/icons/setting.svg)">{{ 'setting' | translate }}</a>
+  </div>
+
+
+  <div id="container">
+    <div id="header">
+      <span id="menu-btn"></span>
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+    </div>
+
+    <ul id="toolbar">
+      <li onclick="selectAllCheckboxes()"><a href="#" style="background-image: url(../public/images/icons/mark.png)"></a></li>
+      <li><a href="#" style="background-image: url(../public/images/icons/trash.png)"></a></li>
+      <li><a href="#" style="background-image: url(../public/images/icons/reload.png)"></a></li>
+    </ul>
+
+    <div id="content">
+      <div class="box" style="padding: 40px 100px; width: auto; display: table; height: auto;">
+        {{ 'email' | translate }}:<br>
+        <input type="email"/><br><br>
+        {{ 'tags' | translate }}:<br>
+        <input type="text"/><br><br>
+        <input type="button" value="{{ 'cancel' | translate }}"/>
+        <input class="blue" type="button" value="{{ 'save' | translate }}"/>
+      </div>
+    </div>
+  </div>
+</body>

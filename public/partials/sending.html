@@ -1,0 +1,198 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="../public/css/font.css" />
+  <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+  <script src="scripts/jquery-1.11.3.min.js"></script>
+  <script src="scripts/angular.js"></script>
+  <script src="scripts/angular-translate.min.js"></script>
+  <script src="scripts/lang.js"></script>
+  <script src="scripts/function.js"></script>
+</head>
+<body ng-app="sepehr" class="noselect">
+  <div id="navbar">
+    <div id="logo"></div>
+    <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
+    <a href="inbox.html" class="item" style="background-image: url(../public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
+    <a href="outbox.html" class="item" style="background-image: url(../public/images/icons/outbox.svg)">{{ 'outbox' | translate }}</a>
+    <a href="#" class="item select" style="background-image: url(../public/images/icons/sending.svg)">{{ 'sending' | translate }}</a>
+    <a href="setting.html" class="item" style="background-image: url(../public/images/icons/setting.svg)">{{ 'setting' | translate }}</a>
+  </div>
+
+
+  <div id="container">
+    <div id="header">
+      <span id="menu-btn"></span>
+      <h2>طراحی الگوریتم</h2>
+      <p>تمرین سری سوم</p>
+    </div>
+
+    <ul id="toolbar">
+      <li onclick="selectAllCheckboxes()"><a href="#" style="background-image: url(../public/images/icons/mark.png)"></a></li>
+      <li><a href="#" style="background-image: url(../public/images/icons/trash.png)"></a></li>
+      <li><a href="#" style="background-image: url(../public/images/icons/reload.png)"></a></li>
+    </ul>
+
+    <div id="content">
+      <table class="mail-list">
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/manual.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/manual.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/manual.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/manual.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Alireza Mahdavi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430123</span><span class="mail-body">سلام استاد، تمرینارو من نوشتم اما سوال آخرش خیلی سخت بود. در ضمن من تاحالا همه تمرینارو تحویل دادم. چرا نمرمو کاکل ندادین؟؟؟ هاااااا؟؟؟ دفه آخرت باشه هااا. آفرین</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/automatic.png" height="32px"></td>
+        </tr>
+        <tr class="mail-item">
+          <td class="mail-tools"><span class="checkbox"></span></td>
+          <td class="mail-sender"><span email="sample@sample.com">Bijan Azizi</span></td>
+          <td class="mail-content"><span class="mail-subject">Tamrin5: 9322430217</span><span class="mail-body">تشکر بابت تمرین های ساده. فقط یکم زیاد بود</span></td>
+          <td class="mail-date">7/3/15</td>
+          <td class="mail-accepted"><img src="../public/images/icons/manual.png" height="32px"></td>
+        </tr>
+      </table>
+
+
+
+    </div>
+  </div>
+</body>
