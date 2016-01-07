@@ -5,30 +5,24 @@ var os = require('os');
 var db = require('./public/js/core/db/db.js');
 var mailer = require('./public/js/core/mailer/main');
 
-sepehr = angular.module('sepehr', ['ngRoute', 'pascalprecht.translate'] );
+sepehr = angular.module('sepehr', ['ngRoute', 'pascalprecht.translate', 'ngSanitize'] );
 
 sepehr.config(['$routeProvider', function ($routeProvider,$location) {
 
     var dirname = require('./public/js/core/util').dirname;
 
-    console.log(dirname);
-    console.log(os.tmpdir());
-    //console.log($location.path);
-    console.log(window.location.href);
+    console.debug(dirname);
+    console.debug(os.tmpdir());
+    //console.debug($location.path);
+    console.debug(window.location.href);
 
 
 
-    mailer.start();
+    startMailListener();
 
-    mailer.on("mail", function(mail){
 
-        console.log("New Mail In Factory",mail);
-        factory.inBox.push(mail);
-        handler(mail,resultCallBack);
-    });
-
-    mailer.on("server:connected",function(){
-        console.log("Connected");
+    mailEvent.on("server:connected",function(){
+        console.debug("Connected");
     });
 
 
@@ -78,54 +72,40 @@ sepehr.factory('mailFactory', function ($q) {
     var factory = {};
     var handler = result;
 
-    factory.getBox = function (box) {
+
+
+    factory.getBox = function (box, from, to) {
         var deffered = $q.defer();
-        if(factory[box]){
-            deffered.resolve(factory[box]);
-            deffered.promise;
-        }
-        factory[box] = [];
-        db.MailDB.find({folder:box},function(err,docs){
-            if(!err){
-                for(var i=0 ; i<docs.length; i++){
-                    var doc = docs[i];
-                    var dateObj = new Date(doc.date);
-                    var dateString = dateObj.getMonth()+"/"+dateObj.getDate();
-                    doc.date = dateString;
-                    factory[box].push(doc);
-                }
-                deffered.resolve(docs);
-            }
-            else{
-                deffered.reject(err);
-            }
+        SQLite.selectMail("folder = '"+box+"'", from+', '+to,function(tx) {
+                deffered.resolve(tx);
         });
         return deffered.promise;
     };
 
-    var resultCallBack = function(err,result,code){
+    var resultCallBack = function(err,mail,code){
         console.log("Mail Resolved");
         if(err){
-            console.log(err);
+            console.debug(err);
             return;
         }
-        result.folder = "OUTBOX";
-        db.MailDB.insert(result,function(err,data) {
-            if(err){
-                console.log(err);
-            }
-            else{
-                console.log("OutBox Ready");
-                factory.outBox.push(data);
+        mail.folder = "OUTBOX";
+
+
+        SQLite.insertMail(function(data) {
+
+            if(!data.err) {
+                //mailEvent.emit("mail", mail);
+                console.log("Mail Added to OutBox");
             }
         });
+
     };
     factory.getResult = function(mail){
       handler.getResult(mail,resultCallBack);
     };
     factory.getMessage = function (id) {
         var deffered = $q.defer();
-        db.MailDB.find({_id:id},function(err,data){
+      /*  db.MailDB.find({_id:id},function(err,data){
             if(!err){
                 deffered.resolve(data[0]);
             }
@@ -133,6 +113,11 @@ sepehr.factory('mailFactory', function ($q) {
                 deffered.reject(err);
             }
         });
+*/
+        SQLite.selectMail("id = "+id+"",null,function(tx) {
+            deffered.resolve(tx[0]);
+        });
+
         return deffered.promise;
     };
     return factory;
@@ -141,10 +126,31 @@ sepehr.factory('mailFactory', function ($q) {
 sepehr.controller('inboxController',function($scope,mailFactory){
     $scope.mails = [];
     $scope.ready = true;
-    mailFactory.getBox('INBOX').then(function (data) {
+    $scope.allSelected = false;
+
+    mailFactory.getBox('INBOX',0,10).then(function (data) {
         $scope.mails = data;
         $scope.ready = true;
     });
+
+    mailEvent.on("mail", function(mail){
+
+        console.debug("New Mail In Factory",mail);
+        $scope.mails.splice(0, 0, mail);
+        //handler(mail,resultCallBack);
+    });
+
+    $scope.toggleCheck = function(mail){
+      mail.check = !mail.check;
+    };
+
+    $scope.checkAll = function(){
+        $scope.allSelected = !$scope.allSelected;
+        var i, len = $scope.mails.length;
+        for(i = 0 ; i<len ; i++){
+            $scope.mails[i] = $scope.allSelected;
+        }
+    }
 
 
 });
@@ -152,7 +158,7 @@ sepehr.controller('outboxController',function($scope,mailFactory){
 
     $scope.mails = [];
     $scope.ready = true;
-    mailFactory.getBox('OUTBOX').then(function (data) {
+    mailFactory.getBox('OUTBOX',0,10).then(function (data) {
         $scope.mails = data;
         $scope.ready = true;
     });
@@ -160,12 +166,14 @@ sepehr.controller('outboxController',function($scope,mailFactory){
 sepehr.controller('messageController',function($scope,mailFactory,$routeParams,$sce){
     mailFactory.getMessage($routeParams.id).then(function (data) {
         $scope.mail = data;
-        if(data.html != null){
-            $scope.mail.text = $sce.trustAsHtml(data.html);
+        $scope.mail.text = $sce.trustAsHtml($scope.mail.text);
+
+        /*if(data.html && data.html != ""){
+            $scope.mail.text = data.html;//$sce.trustAsHtml(data.html);
         }
         else{
-            $scope.mail.text = $sce.trustAsHtml(data.text);
-        }
+            $scope.mail.text = data.text;//$sce.trustAsHtml(data.text);
+        }*/
     });
 });
 sepehr.controller('MenuController',function($scope){

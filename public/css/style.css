@@ -281,6 +281,10 @@ button, input, a {
   background-image: url(../images/icons/check.png);
   opacity: 1;
 }
+.checkbox-checked{
+  background-image: url(../images/icons/check.png);
+  opacity: 1;
+}
 .mail-item .reply{
   display: inline-block;
   cursor: hand;

@@ -1,10 +1,10 @@
 /**
  * Created by Masoud on 1/4/2016.
  */
-var db = require('../db/db');
+//var db = require('../db/db');
 var events = require('events');
 var fs = require('fs');
-var eventEmitter = new events.EventEmitter();
+mailEvent = new events.EventEmitter();
 
 var MailListener = require("mail-listener2");
 var mailListener = new MailListener({
@@ -15,37 +15,37 @@ var mailListener = new MailListener({
     tls: true,
     tlsOptions: { rejectUnauthorized: false },
     mailbox: "INBOX",
-    markSeen: true,
+    markSeen: false,
     fetchUnreadOnStart: true,
     attachments: true,
     attachmentOptions: { stream: "true" }
 });
-var start = function() {
+startMailListener  = function() {
     if (localStorage.hasListener == "true") {
-        console.log("Start listening to " + localStorage.listenerName);
+        console.debug("Start listening to " + localStorage.listenerName);
         mailListener.start();
     }
 };
 
 mailListener.on("server:connected", function(){
-    console.log("imapConnected");
-    eventEmitter.emit("server:connected");
+    console.debug("imapConnected");
+    mailEvent.emit("server:connected");
 });
 
 mailListener.on("server:disconnected", function(){
-    console.log("imapDisconnected");
+    console.debug("imapDisconnected");
 
-    eventEmitter.emit("server:disconnected");
+    mailEvent.emit("server:disconnected");
 });
 
 mailListener.on("error", function(err){
-    console.log(err);
+    console.debug(err);
 
-    //eventEmitter.emit("error");
+    //mailEvent.emit("error");
 });
 
 mailListener.on("mail", function(mail){
-    //console.log(mail);
+    //console.debug(mail);
     delete mail.headers;
     delete mail.cc;
     delete mail.bcc;
@@ -53,29 +53,35 @@ mailListener.on("mail", function(mail){
     delete mail.priority;
     delete mail.references;
     mail.folder = "INBOX";
-    console.log("new Mail Recieved");
-    db.MailDB.insert(mail,function(err,data){
-        if(err){
-            console.log(err);
-        }
+
+    SQLite.selectMail("messageId = '"+mail.messageId+"'", null, function(data){
+       if(data.length != 0){
+           console.log("Duplicated Mail Received!");
+
+       }
         else{
 
-            eventEmitter.emit("mail",data);
-            console.log("Mail Added");
-            //factory.inBox.push(data);
-            //handler(mail,resultCallBack);
-        }
+           SQLite.insertMail(mail, function(data) {
 
+               if(!data.err) {
+                   mail.getDate = getDate;
+                   mail.id = data.results.insertId;
+                   mailEvent.emit("mail", mail);
+                   console.log("Mail Added");
+               }
+           });
+           console.log("New Mail Received");
+       }
     });
+
+
+
 });
 
 mailListener.on("attachment", function(attachment){
     console.log(attachment);
-    var output = fs.createWriteStream(global.ATTACHMENT_DIR+"\\"+attachment.fileName);
+    var output = fs.createWriteStream(global.ATTACHMENT_DIR+"\\"+attachment.generatedFileName);
     attachment.stream.pipe(output);
 
-    eventEmitter.emit("attachment");
+    mailEvent.emit("attachment");
 });
-
-exports.on = eventEmitter.on;
-exports.start = start;

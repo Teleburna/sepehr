@@ -19,10 +19,10 @@ var result = function(mail,callback){
     child = exec(localStorage.script,options
         ,{cwd:"D:\\Documents\\Visual Studio 2012\\Projects\\Sepehr-ExerciseChecker\\Sepehr-ExerciseChecker\\obj\\Debug"},
   function (error, stdout, stderr) {
-      //console.log('stdout: ' + stdout);
-      //console.log('stderr: ' + stderr);
+      //console.debug('stdout: ' + stdout);
+      //console.debug('stderr: ' + stderr);
       var out = stdout.substring(stdout.indexOf('{'),stdout.lastIndexOf('}')+1);
-      console.log(out);
+      console.debug(out);
       if(out == ""){
           err = "Unknown Mail";
           return;
@@ -31,15 +31,15 @@ var result = function(mail,callback){
       res = JSON.parse(out);
       res.text = parseBody(res.body);
       delete res.body;
-      console.log(res);
+      console.debug(res);
 
       if (error !== null) {
           err = error;
-          console.log(error);
+          console.debug(error);
       }
   });
 child.on('close', function (code) {
-    console.log('Closed With Code : ' + code);
+    console.debug('Closed With Code : ' + code);
     callback(err,res, code);
 });
 };

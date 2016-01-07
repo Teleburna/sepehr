@@ -5,17 +5,24 @@
   <link rel="stylesheet" type="text/css" href="public/css/style.css" />
 
   <script src="public/js/core/initial.js"></script>
+  <script src="public/js/core/db/sqlite.js"></script>
+  <script src="public/js/core/mailer/main.js"></script>
 
   <script src="public/js/libs/jQuery.js"></script>
   <script src="public/js/libs/jQueryUi.js"></script>
   <script src="public/js/libs/angular/angular.js"></script>
   <script src="public/js/libs/angular/angular-route.min.js"></script>
+  <script src="public/js/libs/angular/angular-sanitize.min.js"></script>
   <script src="public/js/libs/angular/angular-translate.min.js"></script>
   <script src="public/js/core/handler/handler.js"></script>
   <script src="public/js/core/handler/addHandler.js"></script>
   <script src="public/js/controllers/sepehrConfig.js"></script>
   <script src="public/js/controllers/lang.js"></script>
   <script src="public/js/function.js"></script>
+  <script >
+    require('nw.gui').Window.get().showDevTools();
+
+  </script>
 </head>
 <body ng-app="sepehr" class="noselect" >
   <div id="navbar" ng-controller="MenuController">
@@ -39,11 +46,7 @@
       <p>تمرین سری سوم</p>
     </div>
 
-    <ul id="toolbar">
-      <li><a href="#" style="background-image: url(./public/images/icons/mark.png)"></a></li>
-      <li><a href="#" style="background-image: url(./public/images/icons/trash.png)"></a></li>
-      <li><a href="#" style="background-image: url(./public/images/icons/reload.png)"></a></li>
-    </ul>
+
 
     <div id="content" ng-view="">
       
