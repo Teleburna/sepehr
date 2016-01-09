@@ -142,11 +142,11 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
          valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
          valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );*/
          if(valid) {
-            localStorage.listenerName = $scope.name;
-            localStorage.email = $scope.email;
-            localStorage.password = $scope.password;
-            localStorage.script = $scope.scriptPath;
-            localStorage.tags = $scope.tags;
+            localStorage.listenerName = $scope.processor.name;
+            localStorage.email = $scope.processor.email;
+            localStorage.password = $scope.processor.password;
+            localStorage.script = $scope.processor.scriptPath;
+            localStorage.tags = $scope.processor.tags;
             localStorage.hasListener = "true";
             location.reload();
 
@@ -170,10 +170,15 @@ sepehr.controller('ProcessorListController',function($scope, processorFactory, $
 
     $scope.ready = false;
 
-    processorFactory.getAllProcessors().then(function (data) {
-        $scope.processors = data;
-        $scope.ready = true;
-    });
+    $scope.refresh = function(){
+
+        processorFactory.getAllProcessors().then(function (data) {
+            $scope.processors = data;
+            $scope.ready = true;
+        });
+    };
+
+    $scope.refresh();
 
      $scope.addProcessor = function() {
 

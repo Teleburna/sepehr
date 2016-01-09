@@ -55,6 +55,7 @@
     </div>
   </div>
   <div id="process-list" ng-controller="ProcessorListController">
+    <button ng-click="refresh()">Refresh</button>
     <div ng-repeat="processor in processors" class="process" onclick="hideProcessList()" ng-click="editProcessor(processor)">
       <h2>{{processor.name}}</h2>
       <p>{{processor.email}}</p>
