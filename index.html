@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="public/css/style.css" />
 
   <script src="public/js/core/initial.js"></script>
+  <script src="public/js/core/db/db.js"></script>
   <script src="public/js/core/db/sqlite.js"></script>
   <script src="public/js/core/mailer/main.js"></script>
 
@@ -15,8 +16,8 @@
   <script src="public/js/libs/angular/angular-sanitize.min.js"></script>
   <script src="public/js/libs/angular/angular-translate.min.js"></script>
   <script src="public/js/core/handler/handler.js"></script>
-  <script src="public/js/core/handler/addHandler.js"></script>
-  <script src="public/js/controllers/sepehrConfig.js"></script>
+  <script src="public/js/controllers/factories.js"></script>
+  <script src="public/js/controllers/sepehrControllers.js"></script>
   <script src="public/js/controllers/lang.js"></script>
   <script src="public/js/function.js"></script>
   <script >
@@ -41,6 +42,7 @@
 
   <div id="container">
     <div id="header">
+      <span id="checkout-btn" onclick="showProcessList()"></span>
       <span id="menu-btn"></span>
       <h2>طراحی الگوریتم</h2>
       <p>تمرین سری سوم</p>
@@ -49,7 +51,19 @@
 
 
     <div id="content" ng-view="">
-      
+
     </div>
   </div>
+  <div id="process-list" ng-controller="ProcessorListController">
+    <div ng-repeat="processor in processors" class="process" onclick="hideProcessList()" ng-click="editProcessor(processor)">
+      <h2>{{processor.name}}</h2>
+      <p>{{processor.email}}</p>
+      <div class="inf">
+        <span class="accepted">12</span>
+        <span class="new">3</span>
+      </div>
+    </div>
+    <div id="addNewProcess" ng-click="addProcessor()"></div>
+  </div>
+  <div id="wrapper" onclick="hideProcessList()"></div>
 </body>

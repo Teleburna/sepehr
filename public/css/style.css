@@ -6,11 +6,16 @@ body{
   background-color: #eeeeee;
   min-width: 375px;
 }
-
+.blur{
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
 button, input, a {
   -webkit-app-region: no-drag;
 }
-
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -28,6 +33,7 @@ button, input, a {
   width: 200px;
   background-color: #329ccc;
   z-index: 2;
+  transition: 0.3s;
 }
 #navbar > #logo{
   width: 100%;
@@ -107,6 +113,7 @@ button, input, a {
   right: 200px;
   bottom: 0px;
   z-index: 1;
+  transition: 0.3s;
 }
 @media only screen and (max-width: 600px) {
   #navbar{
@@ -141,6 +148,24 @@ button, input, a {
   margin: 0px;
   color: #aaa;
   line-height: 30px;
+}
+#header > #checkout-btn{
+  width: 48px;
+  height: 48px;
+  background-image: url(../images/icons/sync.png);
+  position: absolute;
+  display: block;
+  left: 20px;
+  top: 20px;
+  background-color: black;
+  border-radius: 50%;
+  opacity: 0.4;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#header > #checkout-btn:hover{
+  transform: rotate(180deg);
+  opacity: 0.8;
 }
 .shadow{
   box-shadow: 0px 2px 5px rgba(0,0,0,0.3) !important;
@@ -213,7 +238,6 @@ button, input, a {
   z-index: 1;
 }
 .mail-list{
-  direction: ltr;
   margin: 0px auto;
   background-color: white;
   border-collapse: collapse;
@@ -221,7 +245,7 @@ button, input, a {
 }
 .mail-item{
   border-bottom: 1px solid rgba(0,0,0,0.02);
-  border-left: 2px solid #00bdf1;
+  border-right: 2px solid #00bdf1;
   cursor: default;
   transition: 0.3s;
 }
@@ -319,7 +343,7 @@ input[type="email"], input[type="text"], input[type="password"]{
   outline: none;
   font-size: 16px;
 }
-input[type="button"], input[type="submit"], input[type="password"]{
+input[type="button"], input[type="submit"]{
   width: 100%;
   font-size: 18px;
   font-family: inherit;
@@ -339,4 +363,99 @@ input[type="button"].blue, input[type="submit"].blue{
 }
 input[type="button"].blue:hover, input[type="submit"].blue:hover{
   background: #329ccc;
+}
+#process-list{
+  position: fixed;
+  left: -300px;
+  width: 250px;
+  top: 0px;
+  bottom: 0px;
+  background-color: #555;
+  z-index: 10;
+  padding: 10px;
+  box-shadow: 0px 0px 5px black;
+  overflow-y: auto;
+  transition: 0.3s;
+}
+#process-list.show{
+  left: 0px;
+}
+.process{
+  margin: 15px auto;
+  width: 200px;
+  background-color: white;
+  cursor: hand;
+  transition: 0.3s;
+  text-align: center;
+}
+.process > h2{
+  font-size: 36px;
+  color: #555;
+  line-height: 70px;
+  margin: 0px;
+}
+.process > p{
+  margin: 0px;
+  margin-top: -10px;
+  color: #aaa;
+  line-height: 30px;
+}
+.process:hover{
+  box-shadow: 0px 0px 10px 2px #00bdf1;
+}
+.process > .inf{
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+.process > .inf > span{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  opacity: 0.5;
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  margin: 0px 20px;
+}
+.process .accepted{
+  background-image: url(../images/icons/accept-black.png);
+}
+.process .new{
+  background-image: url(../images/icons/new.png);
+}
+#wrapper{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 9;
+  display: none;
+}
+#addNewProcess{
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: #27ae60;
+  left: 30px;
+  bottom: -100px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 8px black;
+  animation: example 3s linear 0s infinite;
+  cursor: hand;
+  background-image: url(../images/icons/add.svg);
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+@keyframes example {
+    0%   {transform: scale(1);}
+    80%   {transform: scale(1);}
+    85%   {transform: scale(1.3);}
+    90%   {transform: scale(1);}
+    95%   {transform: scale(1.3);}
+    100%   {transform: scale(1);}
 }
