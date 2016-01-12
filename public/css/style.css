@@ -13,9 +13,6 @@ body{
   -ms-filter: blur(3px);
   filter: blur(3px);
 }
-button, input, a {
-  -webkit-app-region: no-drag;
-}
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -25,12 +22,16 @@ button, input, a {
     user-select: none;
 }
 #titlebar{
+  -webkit-app-region: drag;
   height: 40px;
   position: fixed;
   left: 0px;
   right: 0px;
   top: 0px;
   background-color: #ddd;
+}
+#titlebar *{
+  -webkit-app-region: no-drag;
 }
 #titlebar > #controller{
   list-style: none;
@@ -101,7 +102,6 @@ button, input, a {
   bottom: 0px;
 }
 #navbar{
-  -webkit-app-region: drag;
   position: absolute;
   right: 0px;
   top: 0px;

@@ -16,12 +16,13 @@
   <script src="public/js/libs/angular/angular-sanitize.min.js"></script>
   <script src="public/js/libs/angular/angular-translate.min.js"></script>
   <script src="public/js/core/handler/handler.js"></script>
+  <script src="public/js/controllers/config.js"></script>
   <script src="public/js/controllers/factories.js"></script>
   <script src="public/js/controllers/sepehrControllers.js"></script>
   <script src="public/js/controllers/lang.js"></script>
   <script src="public/js/function.js"></script>
   <script >
-    require('nw.gui').Window.get().showDevTools();
+//    require('nw.gui').Window.get().showDevTools();
 
   </script>
 </head>
@@ -30,9 +31,9 @@
     <ul id="controller">
       <li onclick="require('nw.gui').Window.get().close(true)"><a href="#" id="close-btn"></a></li>
       <li onclick="require('nw.gui').Window.get().toggleKioskMode()"><a href="#" id="maximize-btn"></a></li>
-      <li onclick="require('nw.gui').Window.get().showDevTools()"><a href="#" id="minimize-btn"></a></li>
+      <li onclick="require('nw.gui').Window.get().minimize()"><a href="#" id="minimize-btn"></a></li>
     </ul>
-    <h1 id="frame-title">سپهر</h1>
+    <h1 id="frame-title" onclick="require('nw.gui').Window.get().showDevTools()" >سپهر</h1>
   </div>
   <div id="body">
     <div id="navbar" ng-controller="MenuController">
@@ -50,7 +51,7 @@
       <div id="header">
         <span id="checkout-btn" onclick="showProcessList()"></span>
         <span id="menu-btn"></span>
-        <h2>طراحی الگوریتم</h2>
+        <h2>{{processor.name}}</h2>
         <p>تمرین سری سوم</p>
       </div>
 
@@ -72,6 +73,6 @@
       </div>
       <div id="addNewProcess" onclick="hideProcessList()" ng-click="addProcessor()"></div>
     </div>
-    <div id="wrapper" onclick="hideProcessList()"></div>
+    <div id="wrapper" onclick="hideProcessList()" ng-click="refresh()"></div>
   </div>
 </body>

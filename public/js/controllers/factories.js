@@ -2,74 +2,6 @@
  * Created by Masoud on 1/7/2016.
  */
 
-var os = require('os');
-
-sepehr = angular.module('sepehr', ['ngRoute', 'pascalprecht.translate', 'ngSanitize'] );
-
-sepehr.config(['$routeProvider', function ($routeProvider) {
-
-    var dirname = require('./public/js/core/util').dirname;
-
-    console.debug(dirname);
-    console.debug(os.tmpdir());
-    //console.debug($location.path);
-    console.debug(window.location.href);
-
-
-
-    startMailListener();
-
-
-    mailEvent.on("server:connected",function(){
-        console.debug("Connected");
-    });
-
-
-
-    /*HandlersDB = new global.NEDB({ filename: path.join(global.APP_DIR, 'Sepehr-Handlers.db') , autoload: true});
-     var routes = [];
-     HandlersDB.find({ }, function (err, docs) {
-     for(var i=0 ; i<docs.length; i++){
-     if(docs[i].routes){
-
-     }
-     }
-     });*/
-
-    $routeProvider
-        .when('/inbox', {
-            templateUrl: 'public/partials/inbox.html',
-            controller: 'inboxController'
-        })
-        .when('/outbox', {
-            templateUrl: 'public/partials/outbox.html',
-            controller: 'outboxController'
-        })
-        .when('/inbox/:id', {
-            templateUrl: 'public/partials/message.html',
-            controller: 'messageController'
-        })
-        .when('/outbox/:id', {
-            templateUrl: 'public/partials/message.html',
-            controller: 'messageController'
-        })
-        .when('/setting', {
-            templateUrl: 'public/partials/setting.html',
-            controller: 'ProcessorController'
-        })
-        .when('/setting/:id', {
-            templateUrl: 'public/partials/setting.html',
-            controller: 'ProcessorController'
-        })
-        .when('/new', {
-            templateUrl: global.APP_DIR+'/new.html',
-            controller: 'NewController'
-        })
-        .otherwise({
-            redirectTo: '/inbox'
-        });
-
-}]);
 
 sepehr.factory('mailFactory', function ($q) {
     var factory = {};
@@ -79,7 +11,8 @@ sepehr.factory('mailFactory', function ($q) {
 
     factory.getBox = function (box, from, to) {
         var deffered = $q.defer();
-        SQLite.selectMail("folder = '"+box+"'", from+', '+to,function(tx) {
+        //SQLite.selectMail("folder = '"+box+"'", from+', '+to,function(tx) {
+        SQLite.selectMail("folder = '"+box+"'","",function(tx) {
             deffered.resolve(tx);
         });
         return deffered.promise;
@@ -104,7 +37,7 @@ sepehr.factory('mailFactory', function ($q) {
 
     };
     factory.getResult = function(mail){
-        handler.getResult(mail,resultCallBack);
+        handler(mail,resultCallBack);
     };
     factory.getMessage = function (id) {
         var deffered = $q.defer();
@@ -127,14 +60,14 @@ sepehr.factory('mailFactory', function ($q) {
 });
 sepehr.factory('processorFactory', function ($q) {
     var factory = {};
-    var handler = result;
-
+    var list = [];
 
     factory.getAllProcessors = function () {
         var deffered = $q.defer();
         ProcessorDB.find({},function(err,data){
             if(!err){
-                deffered.resolve(data);
+                list = data;
+                deffered.resolve(list);
             }
             else{
                 deffered.reject(err);
@@ -143,6 +76,11 @@ sepehr.factory('processorFactory', function ($q) {
 
         return deffered.promise;
 
+    };
+    factory.getP = function(id){
+        for(var i = 0; i<list.length ; i++)
+            if(list[i]._id == id)
+                return list[i];
     };
     factory.getProcessor = function (id) {
         var deffered = $q.defer();

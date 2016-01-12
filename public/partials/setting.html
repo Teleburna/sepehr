@@ -9,7 +9,11 @@
         {{ 'password' | translate }}:<br>
         <input type="password"  ng-model="processor.password"/><br><br>
         {{ 'scriptPath' | translate }}:<br>
-        <input type="file" ng-model="processor.scriptPath"/><br><br>
+        <input type="file" ng-model="processor.scriptPath"
+               onchange="angular.element(this).scope().setFiles(this)"
+               /><br><br>
         <input type="button" value="{{ 'cancel' | translate }}" />
         <input class="blue" type="button" value="{{ 'save' | translate }}" ng-click="addHandler()"/>
       </div>
+
+      <!--onchange="angular.element(this).scope().setFiles(this)"-->

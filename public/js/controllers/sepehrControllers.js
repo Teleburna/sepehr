@@ -75,7 +75,7 @@ sepehr.controller('MenuController',function($scope){
         }
     ]
 });
-sepehr.controller('ProcessorController',function($scope,$routeParams, processorFactory){
+sepehr.controller('ProcessorController',function($scope,$routeParams, $rootScope, processorFactory){
 
     $scope.processor = {};
     if(!$routeParams.id) {
@@ -101,6 +101,9 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
     emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 
+     $scope.setFiles = function(elem){
+         $scope.processor.scriptPath = elem.files[0].path;
+     };
      $scope.addHandler = function(){
 
 
@@ -149,10 +152,14 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
             localStorage.tags = $scope.processor.tags;
             localStorage.hasListener = "true";
 
+             $rootScope.processor = $scope.processor;
+
+             $scope.processor.current = true;
              if(!$routeParams.id) {
                  ProcessorDB.insert($scope.processor,function(err,data){
                      if(!err){
                          console.log("Processor Inserted");
+                         $rootScope.$broadcast("processor","refresh");
                      }
                      else{
                          console.log("Error In Saving Processor");
@@ -163,6 +170,7 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
                  ProcessorDB.update({_id:$routeParams.id}, $scope.processor,function(err,data){
                      if(!err){
                          console.log("Processor Updated");
+                         $rootScope.$broadcast("processor","refresh");
                      }
                      else{
                          console.log("Error In Saving Processor");
@@ -186,6 +194,11 @@ sepehr.controller('ProcessorListController',function($scope, $location, processo
             $scope.ready = true;
         });
     };
+
+    $scope.$on("processor", function(event, data){
+        console.log(data);
+        $scope.refresh();
+    });
 
     $scope.refresh();
 
