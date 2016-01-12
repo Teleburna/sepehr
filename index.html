@@ -26,45 +26,52 @@
   </script>
 </head>
 <body ng-app="sepehr" class="noselect" >
-  <div id="navbar" ng-controller="MenuController">
-
-    <button onclick="require('nw.gui').Window.get().close(true)">close</button>
-    <button onclick="require('nw.gui').Window.get().showDevTools()">dev</button>
-    <button onclick="require('nw.gui').Window.get().toggleKioskMode()">Kiosk</button>
-    <div id="logo"></div>
-    <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
-    <a href="#inbox" class="item" style="background-image: url(./public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
-    <a href="#outbox" class="item" style="background-image: url(./public/images/icons/outbox.svg)">{{ 'outbox' | translate }}</a>
-    <a href="#sending" class="item select" style="background-image: url(./public/images/icons/sending.svg)">{{ 'sending' | translate }}</a>
-    <a href="#setting" class="item" style="background-image: url(./public/images/icons/setting.svg)">{{ 'setting' | translate }}</a>
+  <div id="titlebar">
+    <ul id="controller">
+      <li onclick="require('nw.gui').Window.get().close(true)"><a href="#" id="close-btn"></a></li>
+      <li onclick="require('nw.gui').Window.get().toggleKioskMode()"><a href="#" id="maximize-btn"></a></li>
+      <li onclick="require('nw.gui').Window.get().showDevTools()"><a href="#" id="minimize-btn"></a></li>
+    </ul>
+    <h1 id="frame-title">سپهر</h1>
   </div>
+  <div id="body">
+    <div id="navbar" ng-controller="MenuController">
 
-
-  <div id="container">
-    <div id="header">
-      <span id="checkout-btn" onclick="showProcessList()"></span>
-      <span id="menu-btn"></span>
-      <h2>طراحی الگوریتم</h2>
-      <p>تمرین سری سوم</p>
+      <div id="logo"></div>
+      <div id="search"> <input type="text" placeholder="{{ 'search' | translate }}..."/></div>
+      <a href="#inbox" class="item" style="background-image: url(./public/images/icons/inbox.svg)">{{ 'inbox' | translate }}</a>
+      <a href="#outbox" class="item" style="background-image: url(./public/images/icons/outbox.svg)">{{ 'outbox' | translate }}</a>
+      <a href="#sending" class="item select" style="background-image: url(./public/images/icons/sending.svg)">{{ 'sending' | translate }}</a>
+      <a href="#setting" class="item" style="background-image: url(./public/images/icons/setting.svg)">{{ 'setting' | translate }}</a>
     </div>
 
 
+    <div id="container">
+      <div id="header">
+        <span id="checkout-btn" onclick="showProcessList()"></span>
+        <span id="menu-btn"></span>
+        <h2>طراحی الگوریتم</h2>
+        <p>تمرین سری سوم</p>
+      </div>
 
-    <div id="content" ng-view="">
 
-    </div>
-  </div>
-  <div id="process-list" ng-controller="ProcessorListController">
-    <button ng-click="refresh()">Refresh</button>
-    <div ng-repeat="processor in processors" class="process" onclick="hideProcessList()" ng-click="editProcessor(processor)">
-      <h2>{{processor.name}}</h2>
-      <p>{{processor.email}}</p>
-      <div class="inf">
-        <span class="accepted">12</span>
-        <span class="new">3</span>
+
+      <div id="content" ng-view="">
+
       </div>
     </div>
-    <div id="addNewProcess" onclick="hideProcessList()" ng-click="addProcessor()"></div>
+    <div id="process-list" ng-controller="ProcessorListController">
+      <button ng-click="refresh()">Refresh</button>
+      <div ng-repeat="processor in processors" class="process" onclick="hideProcessList()" ng-click="editProcessor(processor)">
+        <h2>{{processor.name}}</h2>
+        <p>{{processor.email}}</p>
+        <div class="inf">
+          <span class="accepted">12</span>
+          <span class="new">3</span>
+        </div>
+      </div>
+      <div id="addNewProcess" onclick="hideProcessList()" ng-click="addProcessor()"></div>
+    </div>
+    <div id="wrapper" onclick="hideProcessList()"></div>
   </div>
-  <div id="wrapper" onclick="hideProcessList()"></div>
 </body>
