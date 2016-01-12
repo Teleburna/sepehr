@@ -116,7 +116,7 @@ body{
   height: 100px;
   background-image: url(../images/logo.png);
   background-color: #01cafe;
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
   background-position: center center;
 }
