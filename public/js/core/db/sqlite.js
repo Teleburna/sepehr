@@ -76,6 +76,9 @@ mailObjectToSqlArray = function(mail){
     mailSqlArray.push(mail.messageId);
     mailSqlArray.push(mail.from[0].name);
     mailSqlArray.push(mail.from[0].address);
+    var replyTo = [];
+    replyTo.push({name:"",address:""});
+    mail.replyTo = mail.replyTo || replyTo;
     mailSqlArray.push(mail.replyTo[0].name);
     mailSqlArray.push(mail.replyTo[0].address);
     mailSqlArray.push(mail.to[0].name);
