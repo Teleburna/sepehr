@@ -24,9 +24,85 @@ button, input, a {
     -ms-user-select: none;
     user-select: none;
 }
+#titlebar{
+  height: 40px;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  background-color: #ddd;
+}
+#titlebar > #controller{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+  height: 40px;
+  vertical-align: middle;
+}
+#titlebar > #controller > li{
+  display: inline-block;
+  margin: 0px 3px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+#titlebar > #controller > li::before{
+  content: close-quote;
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  width: 0px;
+  height: 0px;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+#titlebar > #controller > li:hover::before{
+  width: 30px;
+  height: 30px;
+  left: 5px;
+  top: 5px;
+}
+#titlebar > #controller > li > a{
+  cursor: default;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+#titlebar > #frame-title{
+  display: inline-block;
+  margin: 0px;
+  font-size: 20px;
+}
+#minimize-btn{
+  background-image: url(../images/icons/Minus.png);
+}
+#maximize-btn{
+  background-image: url(../images/icons/Tiles.png);
+}
+#close-btn{
+  background-image: url(../images/icons/Close.png);
+}
+#body{
+  position: fixed;
+  top: 40px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
 #navbar{
   -webkit-app-region: drag;
-  position: fixed;
+  position: absolute;
   right: 0px;
   top: 0px;
   bottom: 0px;
@@ -138,17 +214,6 @@ button, input, a {
   -webkit-box-sizing: border-box;
   z-index: 3;
 }
-#header > h2{
-  font-size: 36px;
-  color: #555;
-  line-height: 70px;
-  margin: 0px;
-}
-#header > p{
-  margin: 0px;
-  color: #aaa;
-  line-height: 30px;
-}
 #header > #checkout-btn{
   width: 48px;
   height: 48px;
@@ -167,6 +232,17 @@ button, input, a {
   transform: rotate(180deg);
   opacity: 0.8;
 }
+#header > h2{
+  font-size: 36px;
+  color: #555;
+  line-height: 70px;
+  margin: 0px;
+}
+#header > p{
+  margin: 0px;
+  color: #aaa;
+  line-height: 30px;
+}
 .shadow{
   box-shadow: 0px 2px 5px rgba(0,0,0,0.3) !important;
 }
@@ -174,7 +250,7 @@ button, input, a {
   position: absolute;
   left: 0px;
   right: 0px;
-  top: 100px;
+  top: 0px;
   height: 50px;
   background-color: rgba(0,0,0,0.1);
   margin: 0px;
@@ -229,12 +305,13 @@ button, input, a {
 }
 #content{
   position: absolute;
-  overflow-y: scroll;
+  overflow-y: auto;
   left: 0px;
   right: 0px;
-  top: 150px;
+  top: 100px;
   bottom: 0px;
   padding: 30px;
+  padding-top: 80px;
   z-index: 1;
 }
 .mail-list{
@@ -268,11 +345,17 @@ button, input, a {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.mail-item > td.mail-content > a{
+  display: block;
+  text-decoration: blink;
+  color: inherit;
+}
 .mail-item > td.mail-attachment{
   opacity: 0.2;
 }
 .mail-item .mail-subject{
   margin-right: 10px;
+  margin-left: 10px;
   font-weight: bold;
 }
 @media only screen and (max-width: 1000px) {
@@ -365,7 +448,7 @@ input[type="button"].blue:hover, input[type="submit"].blue:hover{
   background: #329ccc;
 }
 #process-list{
-  position: fixed;
+  position: absolute;
   left: -300px;
   width: 250px;
   top: 0px;
@@ -426,7 +509,7 @@ input[type="button"].blue:hover, input[type="submit"].blue:hover{
   background-image: url(../images/icons/new.png);
 }
 #wrapper{
-  position: fixed;
+  position: absolute;
   left: 0px;
   top: 0px;
   right: 0px;
@@ -435,7 +518,7 @@ input[type="button"].blue:hover, input[type="submit"].blue:hover{
   display: none;
 }
 #addNewProcess{
-  position: fixed;
+  position: absolute;
   width: 50px;
   height: 50px;
   background-color: #27ae60;
