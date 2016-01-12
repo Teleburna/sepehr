@@ -132,7 +132,7 @@ sepehr.factory('processorFactory', function ($q) {
 
     factory.getAllProcessors = function () {
         var deffered = $q.defer();
-        ProcessorDB.find(function(err,data){
+        ProcessorDB.find({},function(err,data){
             if(!err){
                 deffered.resolve(data);
             }
@@ -154,6 +154,7 @@ sepehr.factory('processorFactory', function ($q) {
                 deffered.reject(err);
             }
         });
+        return deffered.promise;
 
     };
     return factory;

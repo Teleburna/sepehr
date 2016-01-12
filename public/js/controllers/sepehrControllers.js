@@ -148,15 +148,24 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
             localStorage.script = $scope.processor.scriptPath;
             localStorage.tags = $scope.processor.tags;
             localStorage.hasListener = "true";
-            location.reload();
 
              if(!$routeParams.id) {
                  ProcessorDB.insert($scope.processor,function(err,data){
                      if(!err){
-                         //console.log("Saved");
+                         console.log("Processor Inserted");
                      }
                      else{
-                         //console.log("Error");
+                         console.log("Error In Saving Processor");
+                     }
+                 });
+             }
+             else{
+                 ProcessorDB.update({_id:$routeParams.id}, $scope.processor,function(err,data){
+                     if(!err){
+                         console.log("Processor Updated");
+                     }
+                     else{
+                         console.log("Error In Saving Processor");
                      }
                  });
              }
@@ -164,7 +173,7 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, processorF
         return valid;
     }
 });
-sepehr.controller('ProcessorListController',function($scope, processorFactory, $location){
+sepehr.controller('ProcessorListController',function($scope, $location, processorFactory){
 
     $scope.processors = [];
 
