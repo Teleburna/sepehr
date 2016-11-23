@@ -5,7 +5,7 @@
 
 sepehr.factory('mailFactory', function ($q) {
     var factory = {};
-    var handler = result;
+    //var handler = result;
 
 
 
@@ -18,24 +18,7 @@ sepehr.factory('mailFactory', function ($q) {
         return deffered.promise;
     };
 
-    var resultCallBack = function(err,mail,code){
-        console.log("Mail Resolved");
-        if(err){
-            console.debug(err);
-            return;
-        }
-        mail.folder = "OUTBOX";
 
-
-        SQLite.insertMail(function(data) {
-
-            if(!data.err) {
-                //mailEvent.emit("mail", mail);
-                console.log("Mail Added to OutBox");
-            }
-        });
-
-    };
     factory.getResult = function(mail){
         handler(mail,resultCallBack);
     };

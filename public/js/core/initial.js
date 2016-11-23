@@ -6,7 +6,7 @@ var path = require('path');
 global.GUI = require('nw.gui');
 global.APP_DIR = global.GUI.App.dataPath ;
 global.ATTACHMENT_DIR = global.APP_DIR +"\\attachments";
-console.debug("Dir Is:"+global.APP_DIR );
+//console.debug("Dir Is:"+global.APP_DIR );
 var dataBase = require('nedb');
 global.NEDB = dataBase;
 global.localStorage = localStorage;
@@ -28,7 +28,7 @@ if(localStorage.hasListener != "true"){
     window.alert("Sorry, I Couldn't find any mail listener. Please setup your own mail listener from option menu.");
 }
 else{
-    console.debug("No,it isnt First Time");
+    //console.debug("No,it isnt First Time");
 }
 
 /*var gmail = gui.Window.get(window.open('https://gmail.com',{

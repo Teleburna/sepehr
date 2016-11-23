@@ -1,0 +1,217 @@
+@font-face {
+  font-family: Yekan;
+  src: url(BYekan.ttf);
+}
+body{
+  background: linear-gradient(#ffffff, lightblue);
+  height: 100%;
+}
+
+
+
+.center{
+  text-align: center;
+  margin: auto;
+}
+
+table.center {
+  margin-top: 20px;
+  text-align: center;
+  border: 2px solid #191919;
+}
+
+.right ,.skills, .socials{
+  float: right;
+  width: 30%;
+  font-family: Yekan;
+  padding: 10px;
+}
+
+
+.socials{
+  float: left;
+}
+
+.pic:active{
+  transform: rotateY(90deg);
+  transition: 0.3s;
+}
+
+.pic {
+  padding: 30px;
+  position: relative;
+  top:-162px;
+}
+.pic img{
+  width: 100%;
+}
+
+.skills{
+  background: #131313;
+  border: 2px solid #191919;
+  border-radius: 5px;
+  background: linear-gradient( #ffffff, #dbdbdb);
+}
+
+.skills thead{
+  background: rgba(114, 116, 118, 1);
+}
+
+.skills tbody tr:nth-child(2n+1){
+  background: rgba(174, 172, 172, 0.8);
+}
+
+.skills tbody tr:nth-child(2n){
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.skills tbody tr:nth-child(2n+1):hover{
+  background: rgba(174, 172, 172, 1);
+}
+
+.skills tbody tr:nth-child(2n):hover{
+  background: rgb(229, 229, 229);
+}
+
+.skills h1, .skills h2, .skills p{
+  text-align: right;
+}
+
+.skillBar , .skillBar2{
+  background: gainsboro;
+  height: 20px;
+}
+.skillBar div, .skillBar2 div{
+  float: left;
+}
+
+
+/*
+.skills > div div:hover{
+  transform: wi;
+  transition: 0.3s;
+}
+*/
+
+.green{
+  background: green;
+  height: 100%;
+}
+.red{
+  background: red;
+  height: 100%;
+}
+.violet{
+  background: violet;
+  height: 100%;
+}
+.blue{
+  background: blue;
+  height: 100%;
+}
+.yellow{
+  background: #ffff00;
+  height: 100%;
+}
+
+.skills .skillBar .green{
+  width: 10%;
+}
+.skills .skillBar .red{
+  width: 10%;
+}
+.skills .skillBar .blue{
+  width: 10%;
+}
+.skills .skillBar .yellow{
+  width: 10%;
+}
+.skills .skillBar .violet{
+  width: 10%;
+}
+
+.skills .skillBar2 .green{
+  width: 15%;
+}
+.skills .skillBar2 .red{
+  width: 15%;
+}
+.skills .skillBar2 .blue{
+  width: 15%;
+}
+.skills .skillBar2 .yellow{
+  width: 15%;
+}
+.skills .skillBar2 .violet{
+  width: 15%;
+}
+
+.socials a{
+  float: right;
+  color: #19a0c5;
+}
+
+.socials li{
+  list-style: none;
+}
+
+.socials a:active li:first-child {
+  display: block;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .right ,.skills{
+    width: 47%;
+  }
+  .socials{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .right ,.skills, .socials{
+    width: 100%;
+  }
+}
+meter {
+  /* Firefox */
+  background: none; /* Required to get rid of the default background property */
+  background-color: whiteSmoke;
+  box-shadow: 0 5px 5px -5px #333 inset;
+  width: 100%;
+  height: 30px;
+}
+meter::-moz-meter-bar , meter::-moz-meter-bar {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background-image: linear-gradient(
+          90deg,
+          #8bcf69 5%,
+          #e6d450 5%,
+          #e6d450 15%,
+          #f28f68 15%,
+          #f28f68 55%,
+          #cf82bf 55%,
+          #cf82bf 95%,
+          #719fd1 95%,
+          #719fd1 100%
+  );
+  background-size: 100% 100%;
+}
+
+
+meter::-moz-meter-bar:hover , meter::-moz-meter-bar:hover {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background-image: linear-gradient(
+          90deg,
+          #8bcf69 10%,
+          #e6d450 10%,
+          #e6d450 30%,
+          #f28f68 30%,
+          #f28f68 70%,
+          #cf82bf 70%,
+          #cf82bf 95%,
+          #719fd1 95%,
+          #719fd1 250%
+  );
+  background-size: 200% 100%;
+}

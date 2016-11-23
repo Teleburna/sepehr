@@ -1,12 +1,16 @@
-
-<table class="mail-list">
-  <!--<tr class="mail-item" ng-show="!ready" > {{ 'loading' | translate }} </tr>    -->
+<ul id="toolbar">
+  <li><a href="#" ng-click="checkAll()" style="background-image: url(./public/images/icons/mark.png)"></a></li>
+  <li><a href="#" style="background-image: url(./public/images/icons/trash.png)"></a></li>
+  <li><a href="#" style="background-image: url(./public/images/icons/reload.png)"></a></li>
+</ul>
+<table class="mail-list" >
+  <!--<tr class="mail-item" ng-show="!ready" > {{ 'loading' | translate }} </tr>-->
   <tr class="mail-item" ng-repeat="mail in mails">
-    <td class="mail-tools"><span class="checkbox"></span><a href={{'#outbox/'+mail._id}} class="reply"></a></td>
-    <td class="mail-sender"><span email="sample@sample.com">{{mail.from[0].name}}</span></td>
-    <td class="mail-content"><span class="mail-subject">{{mail.subject}}</span><span class="mail-body">{{mail.body}}</span></td>
-    <td class="mail-attachment"><img cla height="32px" src="./public/images/icons/attachment.png"/></td>
-    <td class="mail-date">{{mail.date}}</td>
+    <td class="mail-tools"><span class="checkbox" ng-attr-check = {{mail.check}} ng-click="toggleCheck(mail)"></span><a href={{'#inbox/'+mail.id}} class="reply"></a></td>
+    <td class="mail-sender"><span email="sample@sample.com">{{mail.fromName}}</span></td>
+    <td class="mail-content"><a href={{'#outbox/'+mail.id}}><span class="mail-subject">{{mail.subject}}</span><span class="mail-body">{{mail.text}}</span></a></td>
+    <td class="mail-attachment"><img  ng-show="mail.attachmentsCount > 0" cla height="32px" src="./public/images/icons/attachment.png"/></td>
+    <td class="mail-date">{{mail.getDate(mail.date)}}</td>
     <td class="mail-accepted"><img src="./public/images/icons/automatic.png" height="32px"></td>
   </tr>
 </table>

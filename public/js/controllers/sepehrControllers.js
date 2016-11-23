@@ -1,22 +1,99 @@
 /**
  * Created by Masoud on 13/08/2014.
  */
-
+var nodemailer = require('nodemailer');
 sepehr.controller('inboxController',function($scope,mailFactory){
     $scope.mails = [];
     $scope.ready = true;
     $scope.allSelected = false;
+
+    var user = localStorage.email.substring(0, localStorage.email.indexOf("@"));
+    var smtpConfig = {
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // use SSL
+        auth: {
+            user: localStorage.email,
+            pass: localStorage.password
+        }
+    };
+    var transporter = nodemailer.createTransport(smtpConfig);//'smtps://'+user+'%40gmail.com:'+localStorage.password+'@smtp.gmail.com');
+    /*var data = {
+        from: 'Sepehr <mr.maj73@gmail.com>', // sender address
+        to: "mr.maj73@gmail.com", // list of receivers
+        subject: "Hello", // Subject line
+        text: "World"//, // plaintext body
+        //html: '<b>Hello world</b>' // html body
+    };
+    transporter.sendMail(data, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });*/
 
     mailFactory.getBox('INBOX',0,10).then(function (data) {
         $scope.mails = data;
         $scope.ready = true;
     });
 
+    var resultCallBack = function(err,mail,code){
+        try{
+        console.log("Mail Resolved");
+        }catch (e){}
+        if(err){
+            try{
+            console.debug(err);
+            }catch (e){}
+            return;
+        }
+        mail.folder = "OUTBOX";
+
+
+        var mailOptions = {
+            from: 'Sepehr <mr.maj73@gmail.com>', // sender address
+            to: mail.to, // list of receivers
+            subject: mail.subject, // Subject line
+            text: mail.text//, // plaintext body
+            //html: '<b>Hello world</b>' // html body
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                try{
+                console.log(error);
+                }catch (e){}
+                return;
+            }
+            try{
+            console.log('Message sent: ' + info.response);
+            }catch (e){}
+        });
+
+        SQLite.insertSimpleMail(mail, function(data) {
+
+            try{
+            if(!data.err) {
+                //mailEvent.emit("mail", mail);
+                console.log("Mail Added to OutBox");
+
+
+            }
+            else{
+                console.log("Mail Not Added to OutBox");
+
+            }
+            }catch (e){}
+        });
+
+    };
     mailEvent.on("mail", function(mail){
 
-        console.debug("New Mail In Factory",mail);
+        //console.debug("New Mail In Factory",mail);
+        mail.fromName = mail.from[0].name || mail.from[0].address;
         $scope.mails.splice(0, 0, mail);
-        //handler(mail,resultCallBack);
+        startProcess(mail,resultCallBack);
+        //startNewProcess(mail,resultCallBack);
+
     });
 
     $scope.toggleCheck = function(mail){
@@ -157,24 +234,29 @@ sepehr.controller('ProcessorController',function($scope,$routeParams, $rootScope
              $scope.processor.current = true;
              if(!$routeParams.id) {
                  ProcessorDB.insert($scope.processor,function(err,data){
-                     if(!err){
-                         console.log("Processor Inserted");
-                         $rootScope.$broadcast("processor","refresh");
-                     }
-                     else{
-                         console.log("Error In Saving Processor");
-                     }
+                     try {
+                         if (!err) {
+                             console.log("Processor Inserted");
+                             $rootScope.$broadcast("processor", "refresh");
+                         }
+                         else {
+                             console.log("Error In Saving Processor");
+                         }
+                     }catch (ex){}
                  });
              }
              else{
                  ProcessorDB.update({_id:$routeParams.id}, $scope.processor,function(err,data){
-                     if(!err){
-                         console.log("Processor Updated");
-                         $rootScope.$broadcast("processor","refresh");
-                     }
-                     else{
-                         console.log("Error In Saving Processor");
-                     }
+                     try {
+                         if (!err) {
+                             console.log("Processor Updated");
+                             $rootScope.$broadcast("processor", "refresh");
+                         }
+                         else {
+                             console.log("Error In Saving Processor");
+                         }
+
+                     }catch (ex){}
                  });
              }
         }
@@ -196,7 +278,9 @@ sepehr.controller('ProcessorListController',function($scope, $location, processo
     };
 
     $scope.$on("processor", function(event, data){
+        try{
         console.log(data);
+        }catch (ex){}
         $scope.refresh();
     });
 

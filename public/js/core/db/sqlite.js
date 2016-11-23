@@ -41,11 +41,32 @@ SQLite.selectMail = function(where, limit, callBack) {
     {
         query += ' LIMIT '+limit;
     }
+
+    query += " ORDER BY id DESC";
         SQLite.transaction(function (tx) {
         tx.executeSql( query, [], function (tx, results) {
             callBack(sqlToArray(results.rows));
         }, function (tx, error) {
             console.error(error);
+        });
+    });
+};
+
+SQLite.insertSimpleMail = function(mail, callBack){
+    var out = {};
+    out.error = null;
+    out.results = null;
+    SQLite.transaction(function(tx) {
+        //tx.executeSql('INSERT INTO mailBox (folder, subject, text, date, fromName) VALUES (?,?,?,?,?)', [mail.folder, mail.subject, mail.text, mail.date, mail.from[0].name], function (tx, results) {
+        tx.executeSql('INSERT INTO mailBox (fromAddress, toAddress, subject, text, folder) VALUES (?,?,?,?,?)', [localStorage.email, mail.to,mail.subject, mail.text, mail.folder], function (tx, results) {
+            //console.debug("Mail Added");
+            console.debug(results);
+            out.results = results;
+            callBack(out);
+        }, function (tx, err) {
+            console.debug( err);
+            out.error = err;
+            callBack(out);
         });
     });
 };
@@ -76,9 +97,10 @@ mailObjectToSqlArray = function(mail){
     mailSqlArray.push(mail.messageId);
     mailSqlArray.push(mail.from[0].name);
     mailSqlArray.push(mail.from[0].address);
-    var replyTo = [];
+    var replyTo = [{name:"", address:""}];
     replyTo.push({name:"",address:""});
     mail.replyTo = mail.replyTo || replyTo;
+    mail.to = mail.to || replyTo;
     mailSqlArray.push(mail.replyTo[0].name);
     mailSqlArray.push(mail.replyTo[0].address);
     mailSqlArray.push(mail.to[0].name);

@@ -9,17 +9,22 @@ sepehr.config(['$routeProvider', function ($routeProvider) {
 
     var dirname = require('./public/js/core/util').dirname;
 
+    try {
     console.debug(dirname);
     console.debug(os.tmpdir());
     //console.debug($location.path);
     console.debug(window.location.href);
 
+    }catch (e){}
 
     startMailListener();
 
 
     mailEvent.on("server:connected",function(){
+        try{
         console.debug("Connected");
+
+        }catch (e){}
     });
 
 
